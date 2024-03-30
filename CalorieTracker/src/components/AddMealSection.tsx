@@ -10,6 +10,7 @@ import {
 import {SelectList} from 'react-native-dropdown-select-list';
 import {FoodType, foodListMock} from '../mocks/foodMocks';
 import {Colors} from '../utils/Colors';
+import {PrimaryButton} from './PrimaryButton';
 
 export const AddMealSection = () => {
   const [selected, setSelected] = useState<FoodType>();
@@ -20,15 +21,19 @@ export const AddMealSection = () => {
         data={foodListMock}
         setSelected={(val: FoodType) => setSelected(val)}
       />
-      <View style={styles.quantityContainer}>
-        <TextInput
-          style={styles.quantityInput}
-          keyboardType="numeric"
-          autoCapitalize="none"
-          autoCorrect={false}
-        />
-        <Text style={styles.unit}>g</Text>
-        <Button title="Add" />
+      <View style={styles.quantityContainerWrapper}>
+        <View style={styles.quantityContainer}>
+          <TextInput
+            style={styles.quantityInput}
+            keyboardType="numeric"
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+          <Text style={styles.unit}>g</Text>
+        </View>
+        <View>
+          <PrimaryButton text="Add" pressHandler={() => {}} />
+        </View>
       </View>
       <Text style={styles.totalText}>Total kcal: {1500}</Text>
       {/* <Text>{selected?.name}</Text> */}
@@ -44,10 +49,14 @@ const styles = StyleSheet.create({
   searchContainer: {
     color: Colors.text,
   },
+  quantityContainerWrapper: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginVertical: 10,
+  },
 
   quantityContainer: {
     flexDirection: 'row',
-    marginVertical: 10,
     alignItems: 'center',
     gap: 10,
   },
