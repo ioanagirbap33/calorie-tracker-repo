@@ -1,6 +1,8 @@
 import {SetStateAction, useState} from 'react';
 import {
   Button,
+  FlatList,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -11,20 +13,35 @@ import {SelectList} from 'react-native-dropdown-select-list';
 import {FoodType, foodListMock} from '../mocks/foodMocks';
 import {Colors} from '../utils/Colors';
 import {PrimaryButton} from './PrimaryButton';
-import {FoodDetailsCard} from './FoodDetailsCard';
+import {FoodDetailsCard, FoodDetailsType} from './FoodDetailsCard';
+import {useConsumedFood} from './contexts/consumedFoodContext';
 
 export const AddMealSection = () => {
-  const [selected, setSelected] = useState<FoodType>();
+  const [selectedFood, setSelectedFood] = useState<FoodType>();
   const [totalCalories, setTotalCalories] = useState(0);
-  const [inputValue, setInputValue] = useState('');
+  const [quantityValue, setQuantityValue] = useState('');
+
+  const {consumedFood, setConsumedFood} = useConsumedFood();
 
   const addHandler = () => {
-    if (selected && inputValue) {
-      const quantity = parseFloat(inputValue);
-      const kcalAdded = selected?.kcal;
-      const total = totalCalories + (kcalAdded * quantity) / 100;
+    if (selectedFood && quantityValue) {
+      const quantity = Number(quantityValue);
+
+      const newAddedFood: FoodDetailsType = {
+        quantity,
+        name: selectedFood?.name,
+        kcal: (selectedFood.kcal * quantity) / 100,
+        protein: (selectedFood.protein * quantity) / 100,
+        carbohydrates: (selectedFood.carbohydrates * quantity) / 100,
+        fat: (selectedFood.fat * quantity) / 100,
+      };
+
+      const total = totalCalories + (selectedFood.kcal * quantity) / 100;
+
+      setConsumedFood([...consumedFood, newAddedFood]);
+      console.log(consumedFood);
       setTotalCalories(total);
-      setInputValue('');
+      setQuantityValue('');
     }
   };
 
@@ -32,7 +49,7 @@ export const AddMealSection = () => {
     <View style={styles.AddMealSectionContainer}>
       <SelectList
         data={foodListMock}
-        setSelected={(val: FoodType) => setSelected(val)}
+        setSelected={(val: FoodType) => setSelectedFood(val)}
       />
       <View style={styles.quantityContainerWrapper}>
         <View style={styles.quantityContainer}>
@@ -41,8 +58,8 @@ export const AddMealSection = () => {
             keyboardType="numeric"
             autoCapitalize="none"
             autoCorrect={false}
-            value={inputValue}
-            onChangeText={setInputValue}
+            value={quantityValue}
+            onChangeText={setQuantityValue}
           />
           <Text style={styles.unit}>g</Text>
         </View>
@@ -50,16 +67,18 @@ export const AddMealSection = () => {
           <PrimaryButton text="Add" pressHandler={addHandler} />
         </View>
       </View>
-      <Text style={styles.totalText}>Total kcal: {totalCalories}</Text>
-      <FoodDetailsCard
-        foodDetails={{
-          name: 'Egg',
-          kcal: 70,
-          carbohydrates: 0.4,
-          protein: 6.3,
-          fat: 4.8,
-          quantity: 50,
-        }}></FoodDetailsCard>
+      <Text style={styles.totalText}>
+        Total kcal: {Number(totalCalories).toFixed(2)}
+      </Text>
+      <View style={styles.cardsContainer}>
+        <ScrollView>
+          {consumedFood.map((consumedFoodDetails, index) => (
+            <View key={index}>
+              <FoodDetailsCard foodDetails={consumedFoodDetails} />
+            </View>
+          ))}
+        </ScrollView>
+      </View>
     </View>
   );
 };
@@ -102,5 +121,8 @@ const styles = StyleSheet.create({
   totalText: {
     color: Colors.text,
     fontSize: 20,
+  },
+  cardsContainer: {
+    // padding: 20,
   },
 });

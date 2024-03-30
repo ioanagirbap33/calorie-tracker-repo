@@ -21,22 +21,26 @@ export const FoodDetailsCard = ({foodDetails}: FoodDetailsCardProps) => {
       <Text style={styles.foodTitle}>{foodDetails.name}</Text>
       <View style={styles.foodDetails}>
         <Text style={styles.kcal}>
-          {foodDetails.quantity}g - {foodDetails.kcal}kcal
+          {foodDetails.quantity}g - {Number(foodDetails.kcal).toFixed(2)}kcal
         </Text>
         <View style={styles.macronutrientsContainer}>
           <View style={styles.macronutrient}>
             <View style={styles.redDot}></View>
-            <Text style={styles.macronutrients}>{foodDetails.protein}g</Text>
+            <Text style={styles.macronutrients}>
+              {Number(foodDetails.protein).toFixed(2)}g
+            </Text>
           </View>
           <View style={styles.macronutrient}>
             <View style={styles.greenDot}></View>
             <Text style={styles.macronutrients}>
-              {foodDetails.carbohydrates}g
+              {Number(foodDetails.carbohydrates).toFixed(2)}g
             </Text>
           </View>
           <View style={styles.macronutrient}>
             <View style={styles.yellowDot}></View>
-            <Text style={styles.macronutrients}>{foodDetails.fat}g</Text>
+            <Text style={styles.macronutrients}>
+              {Number(foodDetails.fat).toFixed(2)}g
+            </Text>
           </View>
         </View>
       </View>
