@@ -44,11 +44,6 @@ export const FoodDetailsCard = ({foodDetails}: FoodDetailsCardProps) => {
           </View>
         </View>
       </View>
-      <Pressable>
-        <View>
-          <Text style={styles.macronutrients}>X</Text>
-        </View>
-      </Pressable>
     </View>
   );
 };
@@ -59,7 +54,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     gap: 20,
-    marginTop: 50,
+    marginTop: 20,
+    justifyContent: 'space-between',
   },
   foodTitle: {
     fontSize: 24,

@@ -12,7 +12,7 @@ export const PrimaryButton = ({text, pressHandler}: PrimaryButtonType) => {
       <Pressable
         style={({pressed}) => (pressed ? styles.pressed : null)}
         onPress={pressHandler}>
-        <Text>{text}</Text>
+        <Text style={styles.buttonText}>{text}</Text>
       </Pressable>
     </View>
   );
@@ -26,5 +26,9 @@ const styles = StyleSheet.create({
   },
   pressed: {
     opacity: 0.75,
+  },
+  buttonText: {
+    color: Colors.text,
+    fontSize: 16,
   },
 });

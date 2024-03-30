@@ -2,7 +2,7 @@ import React from 'react';
 import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import {Colors} from './utils/Colors';
 import {HomeScreen} from './screens/HomeScreen';
-import {ConsumedFoodProvider} from './components/contexts/consumedFoodContext';
+import {ConsumedFoodProvider} from './contexts/consumedFoodContext';
 
 function App(): React.JSX.Element {
   return (

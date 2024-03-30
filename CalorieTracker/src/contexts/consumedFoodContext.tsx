@@ -1,5 +1,5 @@
 import {createContext, useContext, useState, Dispatch} from 'react';
-import {FoodDetailsType} from '../FoodDetailsCard';
+import {FoodDetailsType} from '../components/FoodDetailsCard';
 
 export type ConsumedFoodContextProp = {
   consumedFood: FoodDetailsType[];

@@ -5,7 +5,7 @@ import {FoodType, foodListMock} from '../mocks/foodMocks';
 import {Colors} from '../utils/Colors';
 import {PrimaryButton} from './PrimaryButton';
 import {FoodDetailsCard, FoodDetailsType} from './FoodDetailsCard';
-import {useConsumedFood} from './contexts/consumedFoodContext';
+import {useConsumedFood} from '../contexts/consumedFoodContext';
 
 export const AddMealSection = () => {
   const [selectedFood, setSelectedFood] = useState<FoodType>();
@@ -30,10 +30,14 @@ export const AddMealSection = () => {
       const total = totalCalories + (selectedFood.kcal * quantity) / 100;
 
       setConsumedFood([...consumedFood, newAddedFood]);
-      console.log(consumedFood);
       setTotalCalories(total);
       setQuantityValue('');
     }
+  };
+
+  const restartHandler = () => {
+    setConsumedFood([]);
+    setTotalCalories(0);
   };
 
   return (
@@ -61,6 +65,10 @@ export const AddMealSection = () => {
       <Text style={styles.totalText}>
         Total kcal: {Number(totalCalories).toFixed(2)}
       </Text>
+      <View style={styles.buttonsContainer}>
+        <PrimaryButton text="Reset" pressHandler={restartHandler} />
+        <PrimaryButton text="Show statistics" pressHandler={() => {}} />
+      </View>
       <View style={styles.scrollViewContainer}>
         <ScrollView>
           {consumedFood.map((consumedFoodDetails, index) => (
@@ -113,7 +121,12 @@ const styles = StyleSheet.create({
     color: Colors.text,
     fontSize: 20,
   },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 20,
+  },
   scrollViewContainer: {
-    maxHeight: 350,
+    maxHeight: 270,
   },
 });
