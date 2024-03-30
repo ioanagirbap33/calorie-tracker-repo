@@ -1,5 +1,6 @@
 import {SetStateAction, useState} from 'react';
 import {
+  Button,
   StyleSheet,
   Text,
   TextInput,
@@ -19,7 +20,17 @@ export const AddMealSection = () => {
         data={foodListMock}
         setSelected={(val: FoodType) => setSelected(val)}
       />
-
+      <View style={styles.quantityContainer}>
+        <TextInput
+          style={styles.quantityInput}
+          keyboardType="numeric"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <Text style={styles.unit}>g</Text>
+        <Button title="Add" />
+      </View>
+      <Text style={styles.totalText}>Total kcal: {1500}</Text>
       {/* <Text>{selected?.name}</Text> */}
     </View>
   );
@@ -36,7 +47,7 @@ const styles = StyleSheet.create({
 
   quantityContainer: {
     flexDirection: 'row',
-    marginTop: 20,
+    marginVertical: 10,
     alignItems: 'center',
     gap: 10,
   },
@@ -48,10 +59,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     color: Colors.text,
     fontSize: 18,
+    textAlign: 'center',
   },
 
   unit: {
     fontSize: 18,
     color: Colors.text,
+  },
+
+  totalText: {
+    color: Colors.text,
+    fontSize: 20,
   },
 });
