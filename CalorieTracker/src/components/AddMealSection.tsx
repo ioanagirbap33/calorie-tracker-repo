@@ -51,7 +51,15 @@ export const AddMealSection = () => {
         </View>
       </View>
       <Text style={styles.totalText}>Total kcal: {totalCalories}</Text>
-      <FoodDetailsCard></FoodDetailsCard>
+      <FoodDetailsCard
+        foodDetails={{
+          name: 'Egg',
+          kcal: 70,
+          carbohydrates: 0.4,
+          protein: 6.3,
+          fat: 4.8,
+          quantity: 50,
+        }}></FoodDetailsCard>
     </View>
   );
 };

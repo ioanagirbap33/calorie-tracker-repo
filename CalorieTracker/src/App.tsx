@@ -2,15 +2,18 @@ import React from 'react';
 import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import {Colors} from './utils/Colors';
 import {HomeScreen} from './screens/HomeScreen';
+import {ConsumedFoodProvider} from './components/contexts/consumedFoodContext';
 
 function App(): React.JSX.Element {
   return (
-    <View style={styles.appContainer}>
-      <SafeAreaView>
-        <Text style={styles.title}>Calorie Counter</Text>
-        <HomeScreen />
-      </SafeAreaView>
-    </View>
+    <ConsumedFoodProvider>
+      <View style={styles.appContainer}>
+        <SafeAreaView>
+          <Text style={styles.title}>Calorie Counter</Text>
+          <HomeScreen />
+        </SafeAreaView>
+      </View>
+    </ConsumedFoodProvider>
   );
 }
 

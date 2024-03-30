@@ -1,24 +1,42 @@
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {Colors} from '../utils/Colors';
+import {FoodType} from '../mocks/foodMocks';
 
-export const FoodDetailsCard = () => {
+export type FoodDetailsType = {
+  quantity: number;
+  name: string;
+  kcal: number;
+  carbohydrates: number;
+  protein: number;
+  fat: number;
+};
+
+type FoodDetailsCardProps = {
+  foodDetails: FoodDetailsType;
+};
+
+export const FoodDetailsCard = ({foodDetails}: FoodDetailsCardProps) => {
   return (
     <View style={styles.card}>
-      <Text style={styles.foodTitle}>Apple</Text>
+      <Text style={styles.foodTitle}>{foodDetails.name}</Text>
       <View style={styles.foodDetails}>
-        <Text style={styles.kcal}>50g - 100kcal</Text>
+        <Text style={styles.kcal}>
+          {foodDetails.quantity}g - {foodDetails.kcal}kcal
+        </Text>
         <View style={styles.macronutrientsContainer}>
           <View style={styles.macronutrient}>
             <View style={styles.redDot}></View>
-            <Text style={styles.macronutrients}>50g</Text>
+            <Text style={styles.macronutrients}>{foodDetails.protein}g</Text>
           </View>
           <View style={styles.macronutrient}>
             <View style={styles.greenDot}></View>
-            <Text style={styles.macronutrients}>50g</Text>
+            <Text style={styles.macronutrients}>
+              {foodDetails.carbohydrates}g
+            </Text>
           </View>
           <View style={styles.macronutrient}>
             <View style={styles.yellowDot}></View>
-            <Text style={styles.macronutrients}>50g</Text>
+            <Text style={styles.macronutrients}>{foodDetails.fat}g</Text>
           </View>
         </View>
       </View>
