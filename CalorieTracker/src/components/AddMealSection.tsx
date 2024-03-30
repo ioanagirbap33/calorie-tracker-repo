@@ -1,14 +1,5 @@
 import {SetStateAction, useState} from 'react';
-import {
-  Button,
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TextInputComponent,
-  View,
-} from 'react-native';
+import {ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
 import {SelectList} from 'react-native-dropdown-select-list';
 import {FoodType, foodListMock} from '../mocks/foodMocks';
 import {Colors} from '../utils/Colors';
@@ -70,7 +61,7 @@ export const AddMealSection = () => {
       <Text style={styles.totalText}>
         Total kcal: {Number(totalCalories).toFixed(2)}
       </Text>
-      <View style={styles.cardsContainer}>
+      <View style={styles.scrollViewContainer}>
         <ScrollView>
           {consumedFood.map((consumedFoodDetails, index) => (
             <View key={index}>
@@ -122,7 +113,7 @@ const styles = StyleSheet.create({
     color: Colors.text,
     fontSize: 20,
   },
-  cardsContainer: {
-    // padding: 20,
+  scrollViewContainer: {
+    maxHeight: 350,
   },
 });
