@@ -11,9 +11,22 @@ import {SelectList} from 'react-native-dropdown-select-list';
 import {FoodType, foodListMock} from '../mocks/foodMocks';
 import {Colors} from '../utils/Colors';
 import {PrimaryButton} from './PrimaryButton';
+import {FoodDetailsCard} from './FoodDetailsCard';
 
 export const AddMealSection = () => {
   const [selected, setSelected] = useState<FoodType>();
+  const [totalCalories, setTotalCalories] = useState(0);
+  const [inputValue, setInputValue] = useState('');
+
+  const addHandler = () => {
+    if (selected && inputValue) {
+      const quantity = parseFloat(inputValue);
+      const kcalAdded = selected?.kcal;
+      const total = totalCalories + (kcalAdded * quantity) / 100;
+      setTotalCalories(total);
+      setInputValue('');
+    }
+  };
 
   return (
     <View style={styles.AddMealSectionContainer}>
@@ -28,15 +41,17 @@ export const AddMealSection = () => {
             keyboardType="numeric"
             autoCapitalize="none"
             autoCorrect={false}
+            value={inputValue}
+            onChangeText={setInputValue}
           />
           <Text style={styles.unit}>g</Text>
         </View>
         <View>
-          <PrimaryButton text="Add" pressHandler={() => {}} />
+          <PrimaryButton text="Add" pressHandler={addHandler} />
         </View>
       </View>
-      <Text style={styles.totalText}>Total kcal: {1500}</Text>
-      {/* <Text>{selected?.name}</Text> */}
+      <Text style={styles.totalText}>Total kcal: {totalCalories}</Text>
+      <FoodDetailsCard></FoodDetailsCard>
     </View>
   );
 };
