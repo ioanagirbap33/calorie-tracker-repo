@@ -1,4 +1,4 @@
-import {SetStateAction, useState} from 'react';
+import {SetStateAction, useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
 import {SelectList} from 'react-native-dropdown-select-list';
 import {FoodType, foodListMock} from '../mocks/foodMocks';
@@ -6,7 +6,6 @@ import {Colors} from '../utils/Colors';
 import {PrimaryButton} from './PrimaryButton';
 import {FoodDetailsCard, FoodDetailsType} from './FoodDetailsCard';
 import {useConsumedFood} from '../contexts/consumedFoodContext';
-import {SecondaryButton} from './SecondaryButton';
 
 export const AddMealSection = () => {
   const [selectedFood, setSelectedFood] = useState<FoodType>();
@@ -14,6 +13,14 @@ export const AddMealSection = () => {
   const [quantityValue, setQuantityValue] = useState('');
 
   const {consumedFood, setConsumedFood} = useConsumedFood();
+
+  useEffect(() => {
+    let totalKcal = 0;
+    consumedFood.map(
+      consumedFoodDetails => (totalKcal = totalKcal + consumedFoodDetails.kcal),
+    );
+    setTotalCalories(totalKcal);
+  }, [consumedFood]);
 
   const addHandler = () => {
     if (selectedFood && quantityValue) {
@@ -28,10 +35,10 @@ export const AddMealSection = () => {
         fat: (selectedFood.fat * quantity) / 100,
       };
 
-      const total = totalCalories + (selectedFood.kcal * quantity) / 100;
+      // const total = totalCalories + (selectedFood.kcal * quantity) / 100;
 
       setConsumedFood([...consumedFood, newAddedFood]);
-      setTotalCalories(total);
+      // setTotalCalories(total);
       setQuantityValue('');
     }
   };
