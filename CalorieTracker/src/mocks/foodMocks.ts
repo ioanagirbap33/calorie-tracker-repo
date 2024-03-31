@@ -29,13 +29,13 @@ export const foodListMock: {key: FoodType; value: string}[] = [
   },
   {
     key: {
-      name: 'Chicken (skinless, boneless breast)',
+      name: 'Chicken',
       kcal: 165,
       carbohydrates: 0,
       protein: 31,
       fat: 3.6,
     },
-    value: 'Chicken (skinless, boneless breast)',
+    value: 'Chicken',
   },
   {
     key: {
@@ -99,13 +99,13 @@ export const foodListMock: {key: FoodType; value: string}[] = [
   },
   {
     key: {
-      name: 'Greek Yogurt (plain, low-fat)',
+      name: 'Yogurt',
       kcal: 59,
       carbohydrates: 3.6,
       protein: 10,
       fat: 0.4,
     },
-    value: 'Greek Yogurt (plain, low-fat)',
+    value: 'Yogurt',
   },
   {
     key: {
@@ -149,63 +149,53 @@ export const foodListMock: {key: FoodType; value: string}[] = [
   },
   {
     key: {
-      name: 'Tuna (canned in water)',
+      name: 'Tuna',
       kcal: 116,
       carbohydrates: 0,
       protein: 26,
       fat: 1,
     },
-    value: 'Tuna (canned in water)',
+    value: 'Tuna',
   },
   {
     key: {
-      name: 'Whole Wheat Bread',
+      name: 'Bread',
       kcal: 69,
       carbohydrates: 12,
       protein: 2.6,
       fat: 0.8,
     },
-    value: 'Whole Wheat Bread',
+    value: 'Bread',
   },
   {
     key: {
-      name: 'Sweet Potato',
+      name: 'Potato',
       kcal: 86,
       carbohydrates: 20,
       protein: 1.6,
       fat: 0.1,
     },
-    value: 'Sweet Potato',
+    value: 'Potato',
   },
   {
     key: {
-      name: 'Peanut Butter',
-      kcal: 188,
-      carbohydrates: 6,
-      protein: 8,
-      fat: 16,
-    },
-    value: 'Peanut Butter',
-  },
-  {
-    key: {
-      name: 'Milk (1% fat)',
+      name: 'Milk',
       kcal: 42,
       carbohydrates: 4.7,
       protein: 3.4,
       fat: 1,
     },
-    value: 'Milk (1% fat)',
+    value: 'Milk',
   },
   {
     key: {
-      name: 'Cheese (cheddar)',
+      name: 'Cheese',
       kcal: 113,
       carbohydrates: 0.4,
       protein: 7,
       fat: 9,
     },
-    value: 'Cheese (cheddar)',
+    value: 'Cheese',
   },
   {
     key: {
@@ -219,13 +209,13 @@ export const foodListMock: {key: FoodType; value: string}[] = [
   },
   {
     key: {
-      name: 'Black Beans (canned)',
+      name: 'Beans',
       kcal: 88,
       carbohydrates: 15,
       protein: 5,
       fat: 0.5,
     },
-    value: 'Black Beans (canned)',
+    value: 'Beans',
   },
   {
     key: {
@@ -237,16 +227,7 @@ export const foodListMock: {key: FoodType; value: string}[] = [
     },
     value: 'Lentils',
   },
-  {
-    key: {
-      name: 'Yogurt (low-fat, fruit flavored)',
-      kcal: 106,
-      carbohydrates: 18,
-      protein: 6,
-      fat: 1.5,
-    },
-    value: 'Yogurt (low-fat, fruit flavored)',
-  },
+
   {
     key: {
       name: 'Tomato',
@@ -269,24 +250,15 @@ export const foodListMock: {key: FoodType; value: string}[] = [
   },
   {
     key: {
-      name: 'Pasta (cooked)',
+      name: 'Pasta',
       kcal: 158,
       carbohydrates: 31,
       protein: 5,
       fat: 1.1,
     },
-    value: 'Pasta (cooked)',
+    value: 'Pasta',
   },
-  {
-    key: {
-      name: 'Cottage Cheese (low-fat)',
-      kcal: 81,
-      carbohydrates: 3.4,
-      protein: 11,
-      fat: 2.3,
-    },
-    value: 'Cottage Cheese (low-fat)',
-  },
+
   {
     key: {
       name: 'Hummus',
