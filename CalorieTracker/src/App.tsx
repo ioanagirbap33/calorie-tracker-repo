@@ -1,16 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import {Colors} from './utils/Colors';
-import {HomeScreen} from './screens/HomeScreen';
 import {ConsumedFoodProvider} from './contexts/consumedFoodContext';
+import {SecondaryButton} from './components/SecondaryButton';
+import {AddMealSection} from './components/AddMealSection';
+import {Statistics} from './components/Statistics';
 
 function App(): React.JSX.Element {
+  const [showStatistics, setShowStatistics] = useState(false);
+
+  const handleButton = () => {
+    showStatistics ? setShowStatistics(false) : setShowStatistics(true);
+  };
   return (
     <ConsumedFoodProvider>
       <View style={styles.appContainer}>
         <SafeAreaView>
           <Text style={styles.title}>Calorie Counter</Text>
-          <HomeScreen />
+          <View>
+            {!showStatistics ? (
+              <>
+                <SecondaryButton
+                  text="Show statistics"
+                  pressHandler={handleButton}
+                />
+                <AddMealSection />
+              </>
+            ) : (
+              <>
+                <SecondaryButton text="Back" pressHandler={handleButton} />
+                <Statistics />
+              </>
+            )}
+          </View>
         </SafeAreaView>
       </View>
     </ConsumedFoodProvider>
@@ -24,7 +46,6 @@ const styles = StyleSheet.create({
     paddingTop: 90,
     paddingHorizontal: 20,
     paddingBottom: 50,
-    // display: 'flex',
     alignItems: 'center',
   },
   title: {
