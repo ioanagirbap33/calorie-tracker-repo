@@ -35,10 +35,7 @@ export const AddMealSection = () => {
         fat: (selectedFood.fat * quantity) / 100,
       };
 
-      // const total = totalCalories + (selectedFood.kcal * quantity) / 100;
-
       setConsumedFood([...consumedFood, newAddedFood]);
-      // setTotalCalories(total);
       setQuantityValue('');
     }
   };

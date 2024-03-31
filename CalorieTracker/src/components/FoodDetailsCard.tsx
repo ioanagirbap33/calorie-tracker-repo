@@ -1,6 +1,5 @@
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {Colors} from '../utils/Colors';
-import {FoodType} from '../mocks/foodMocks';
 
 export type FoodDetailsType = {
   quantity: number;
