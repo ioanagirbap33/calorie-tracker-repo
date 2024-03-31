@@ -6,6 +6,7 @@ import {Colors} from '../utils/Colors';
 import {PrimaryButton} from './PrimaryButton';
 import {FoodDetailsCard, FoodDetailsType} from './FoodDetailsCard';
 import {useConsumedFood} from '../contexts/consumedFoodContext';
+import {SecondaryButton} from './SecondaryButton';
 
 export const AddMealSection = () => {
   const [selectedFood, setSelectedFood] = useState<FoodType>();
@@ -58,17 +59,15 @@ export const AddMealSection = () => {
           />
           <Text style={styles.unit}>g</Text>
         </View>
-        <View>
+        <View style={styles.buttonsContainer}>
           <PrimaryButton text="Add" pressHandler={addHandler} />
+          <PrimaryButton text="Reset" pressHandler={restartHandler} />
         </View>
       </View>
       <Text style={styles.totalText}>
         Total kcal: {Number(totalCalories).toFixed(2)}
       </Text>
-      <View style={styles.buttonsContainer}>
-        <PrimaryButton text="Reset" pressHandler={restartHandler} />
-        <PrimaryButton text="Show statistics" pressHandler={() => {}} />
-      </View>
+
       <View style={styles.scrollViewContainer}>
         <ScrollView>
           {consumedFood.map((consumedFoodDetails, index) => (
@@ -84,7 +83,7 @@ export const AddMealSection = () => {
 
 const styles = StyleSheet.create({
   AddMealSectionContainer: {
-    paddingVertical: 20,
+    paddingVertical: 0,
     color: Colors.text,
   },
   searchContainer: {
@@ -123,8 +122,9 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 20,
+    gap: 10,
+    marginVertical: 10,
+    alignItems: 'center',
   },
   scrollViewContainer: {
     maxHeight: 270,
