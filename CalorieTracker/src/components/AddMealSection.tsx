@@ -6,6 +6,7 @@ import {Colors} from '../utils/Colors';
 import {PrimaryButton} from './PrimaryButton';
 import {FoodDetailsCard, FoodDetailsType} from './FoodDetailsCard';
 import {useConsumedFood} from '../contexts/consumedFoodContext';
+import {SecondaryButton} from './SecondaryButton';
 
 export const AddMealSection = () => {
   const [selectedFood, setSelectedFood] = useState<FoodType>();
@@ -43,7 +44,7 @@ export const AddMealSection = () => {
   return (
     <View style={styles.AddMealSectionContainer}>
       <View style={styles.buttonsContainer}>
-        <PrimaryButton text="Show statistics" pressHandler={() => {}} />
+        <SecondaryButton text="Show statistics" pressHandler={() => {}} />
       </View>
       <SelectList
         data={foodListMock}
