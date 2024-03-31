@@ -2,13 +2,15 @@ import {Text, View} from 'react-native';
 import {AddMealSection} from '../components/AddMealSection';
 import {SecondaryButton} from '../components/SecondaryButton';
 import {useState} from 'react';
+import {Statistics} from '../components/Statistics';
 
 export const HomeScreen = () => {
   const [showStatistics, setShowStatistics] = useState(false);
 
   const handleButton = () => {
-    setShowStatistics(true);
+    showStatistics ? setShowStatistics(false) : setShowStatistics(true);
   };
+
   return (
     <View>
       {!showStatistics ? (
@@ -17,9 +19,10 @@ export const HomeScreen = () => {
           <AddMealSection />
         </>
       ) : (
-        <View>
-          <Text>Hi</Text>
-        </View>
+        <>
+          <SecondaryButton text="Back" pressHandler={handleButton} />
+          <Statistics />
+        </>
       )}
     </View>
   );
