@@ -43,9 +43,6 @@ export const AddMealSection = () => {
 
   return (
     <View style={styles.AddMealSectionContainer}>
-      <View style={styles.buttonsContainer}>
-        <SecondaryButton text="Show statistics" pressHandler={() => {}} />
-      </View>
       <SelectList
         data={foodListMock}
         setSelected={(val: FoodType) => setSelectedFood(val)}
@@ -86,7 +83,7 @@ export const AddMealSection = () => {
 
 const styles = StyleSheet.create({
   AddMealSectionContainer: {
-    paddingVertical: 20,
+    paddingVertical: 0,
     color: Colors.text,
   },
   searchContainer: {

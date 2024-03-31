@@ -20,11 +20,13 @@ export const SecondaryButton = ({text, pressHandler}: SecondaryButtonType) => {
 
 const styles = StyleSheet.create({
   secondaryButton: {
-    // backgroundColor: Colors.button,
     borderColor: Colors.text,
     borderWidth: 1,
     padding: 2,
     borderRadius: 5,
+    marginVertical: 10,
+    marginTop: 20,
+    alignSelf: 'flex-start',
   },
   pressed: {
     opacity: 0.75,
