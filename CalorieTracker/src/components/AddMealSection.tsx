@@ -90,7 +90,7 @@ export const AddMealSection = () => {
         Total kcal: {Number(totalCalories).toFixed(2)}
       </Text>
 
-      <View style={styles.flatListContainer}>
+      <View style={styles.listContainer}>
         <FlatList
           data={consumedFood}
           renderItem={item => {
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     alignItems: 'center',
   },
-  flatListContainer: {
+  listContainer: {
     maxHeight: '70%',
   },
 });
