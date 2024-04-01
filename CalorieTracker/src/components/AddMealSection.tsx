@@ -1,5 +1,6 @@
 import {SetStateAction, useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SelectList} from 'react-native-dropdown-select-list';
 import {FoodType, foodListMock} from '../mocks/foodMocks';
 import {Colors} from '../utils/Colors';
@@ -22,6 +23,14 @@ export const AddMealSection = () => {
     setTotalCalories(totalKcal);
   }, [consumedFood]);
 
+  const storeData = async (key: string, value: any) => {
+    try {
+      await AsyncStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.error('Error storing data:', error);
+    }
+  };
+
   const addHandler = () => {
     if (selectedFood && quantityValue) {
       const quantity = Number(quantityValue);
@@ -37,12 +46,14 @@ export const AddMealSection = () => {
 
       setConsumedFood([...consumedFood, newAddedFood]);
       setQuantityValue('');
+      storeData('consumedFood', [...consumedFood, newAddedFood]);
     }
   };
 
   const restartHandler = () => {
     setConsumedFood([]);
     setTotalCalories(0);
+    AsyncStorage.removeItem('consumedFood');
   };
 
   return (
