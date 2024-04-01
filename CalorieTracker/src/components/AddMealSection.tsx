@@ -1,5 +1,12 @@
 import {SetStateAction, useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
+import {
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SelectList} from 'react-native-dropdown-select-list';
 import {FoodType, foodListMock} from '../mocks/foodMocks';
@@ -83,14 +90,17 @@ export const AddMealSection = () => {
         Total kcal: {Number(totalCalories).toFixed(2)}
       </Text>
 
-      <View style={styles.scrollViewContainer}>
-        <ScrollView>
-          {consumedFood.map((consumedFoodDetails, index) => (
-            <View key={index}>
-              <FoodDetailsCard foodDetails={consumedFoodDetails} />
-            </View>
-          ))}
-        </ScrollView>
+      <View style={styles.listContainer}>
+        <FlatList
+          data={consumedFood}
+          renderItem={item => {
+            return (
+              <View>
+                <FoodDetailsCard foodDetails={item.item} />
+              </View>
+            );
+          }}
+        />
       </View>
     </View>
   );
@@ -141,7 +151,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     alignItems: 'center',
   },
-  scrollViewContainer: {
-    maxHeight: 270,
+  listContainer: {
+    maxHeight: '70%',
   },
 });
